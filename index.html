@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreatofans - La plataforma definitiva para creadores</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a0a0c',
+                            card: '#141418',
+                            fuchsia: '#d946ef',
+                            purple: '#9333ea',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-white min-h-screen flex flex-col justify-between selection:bg-brand-fuchsia selection:text-white">
+    <!-- Header -->
+    <header class="border-b border-zinc-800 px-6 py-4 flex justify-between items-center bg-brand-dark/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="flex items-center space-x-2">
+            <!-- Logotipo K Fusion Flame -->
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-purple to-brand-fuchsia flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-fuchsia/30">
+                K
+            </div>
+            <span class="font-extrabold text-xl tracking-wider bg-gradient-to-r from-white via-zinc-200 to-brand-fuchsia bg-clip-text text-transparent">Kreatofans</span>
+        </div>
+        <div class="space-x-4">
+            <button class="text-sm font-medium text-zinc-400 hover:text-white transition">Iniciar Sesión</button>
+            <button class="bg-gradient-to-r from-brand-purple to-brand-fuchsia text-sm font-semibold px-4 py-2 rounded-xl shadow-md shadow-brand-fuchsia/20 hover:opacity-90 transition">Crear Cuenta</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col items-center justify-center text-center px-6 py-12">
+        <div class="inline-flex items-center space-x-2 bg-brand-card border border-zinc-800 px-4 py-1.5 rounded-full text-xs text-brand-fuchsia mb-6 shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-brand-fuchsia animate-pulse"></span>
+            <span>Plataforma 100% Real y Funcional en Desarrollo</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black max-w-3xl tracking-tight leading-tight mb-6">
+            Monetiza tu pasión, <br><span class="bg-gradient-to-r from-brand-purple to-brand-fuchsia bg-clip-text text-transparent">conecta sin límites.</span>
+        </h1>
+        <p class="text-zinc-400 max-w-xl text-sm md:text-base mb-8">
+            El espacio definitivo para creadores de contenido. Suscripciones directas, pagos seguros mediante pasarelas reales y comunidad exclusiva.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
+            <button class="bg-white text-black font-bold px-6 py-3 rounded-xl hover:bg-zinc-200 transition">Explorar Creadores</button>
+            <button class="bg-brand-card border border-zinc-700 font-semibold px-6 py-3 rounded-xl hover:border-brand-fuchsia transition">Soy Creador</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-zinc-800 py-6 text-center text-xs text-zinc-500">
+        &copy; 2026 Kreatofans. Todos los derechos reservados. Infraestructura lista para producción.
+    </footer>
+</body>
+</html>
