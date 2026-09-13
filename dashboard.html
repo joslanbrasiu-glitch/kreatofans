@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Creador - Kreatofans</title>
+    <title>Panel Social & Feed - Kreatofans</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -16,6 +17,17 @@
                             fuchsia: '#d946ef',
                             purple: '#9333ea',
                         }
+                    },
+                    keyframes: {
+                        flyAcross: {
+                            '0%': { transform: 'translateY(0px) scale(0.5)', opacity: '0' },
+                            '20%': { opacity: '1', transform: 'translateY(-20px) scale(1.2)' },
+                            '80%': { opacity: '1', transform: 'translateY(-40px) scale(1)' },
+                            '100%': { transform: 'translateY(-80px) scale(0.8)', opacity: '0' }
+                        }
+                    },
+                    animation: {
+                        'fly-sticker': 'flyAcross 1.5s ease-in-out forwards',
                     }
                 }
             }
@@ -29,7 +41,7 @@
             <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-purple to-brand-fuchsia flex items-center justify-center font-bold text-lg shadow-lg shadow-brand-fuchsia/30">
                 K
             </div>
-            <span class="font-extrabold text-lg tracking-wider">Kreatofans <span class="text-xs text-brand-fuchsia font-normal ml-2 px-2 py-0.5 bg-brand-card border border-zinc-800 rounded-full">Dashboard</span></span>
+            <span class="font-extrabold text-lg tracking-wider">Kreatofans <span class="text-xs text-brand-fuchsia font-normal ml-2 px-2 py-0.5 bg-brand-card border border-zinc-800 rounded-full">Social Feed</span></span>
         </div>
         <div class="flex items-center space-x-3">
             <a href="index.html" class="text-xs text-zinc-400 hover:text-white transition">Cerrar Sesión</a>
@@ -38,59 +50,120 @@
 
     <!-- Contenido Principal -->
     <main class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 space-y-6">
-        <!-- Estadísticas Rápidas -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-brand-card border border-zinc-800 p-5 rounded-2xl">
-                <p class="text-xs text-zinc-400 font-medium">Ingresos Mensuales</p>
-                <h3 class="text-2xl font-black mt-1 text-brand-fuchsia">$1,245.00 <span class="text-xs text-zinc-500 font-normal">USD</span></h3>
-            </div>
-            <div class="bg-brand-card border border-zinc-800 p-5 rounded-2xl">
-                <p class="text-xs text-zinc-400 font-medium">Suscriptores Activos</p>
-                <h3 class="text-2xl font-black mt-1">348</h3>
-            </div>
-            <div class="bg-brand-card border border-zinc-800 p-5 rounded-2xl">
-                <p class="text-xs text-zinc-400 font-medium">Publicaciones</p>
-                <h3 class="text-2xl font-black mt-1">24</h3>
-            </div>
-        </div>
-
-        <!-- Sección de Nuevo Post -->
-        <div class="bg-brand-card border border-zinc-800 rounded-2xl p-6 shadow-xl">
-            <h2 class="text-sm font-bold text-zinc-200 mb-3">Crear nueva publicación exclusiva</h2>
-            <textarea class="w-5/6 bg-brand-dark border border-zinc-800 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-brand-fuchsia transition resize-none" rows="3" placeholder="¿Qué estás compartiendo hoy con tus fans?"></textarea>
-            <div class="flex justify-between items-center mt-4">
-                <div class="text-xs text-zinc-500">🔒 Contenido protegido para suscriptores</div>
-                <button onclick="alert('Publicación lista para registrarse en la base de datos.');" class="bg-gradient-to-r from-brand-purple to-brand-fuchsia text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-lg shadow-brand-fuchsia/20 hover:opacity-90 transition">
-                    Publicar
-                </button>
-            </div>
-        </div>
-
-        <!-- Feed de Contenido -->
-        <div class="space-y-4">
-            <h2 class="text-sm font-bold text-zinc-400 tracking-wider uppercase">Tus Publicaciones Recientes</h2>
+        
+        <!-- Simulador de Muros e Interacción Cruzada -->
+        <div class="bg-brand-card border border-zinc-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-fuchsia/10 rounded-full blur-3xl pointer-events-none"></div>
             
-            <div class="bg-brand-card border border-zinc-800 rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-brand-purple flex items-center justify-center font-bold">JD</div>
-                        <div>
-                            <h4 class="text-sm font-bold">Tus Manos Creadoras</h4>
-                            <span class="text-xs text-zinc-500">Hace 2 horas</span>
-                        </div>
-                    </div>
-                    <span class="text-xs bg-brand-fuchsia/10 text-brand-fuchsia border border-brand-fuchsia/20 px-3 py-1 rounded-full font-medium">Exclusivo Tier 1</span>
+            <h2 class="text-sm font-bold text-zinc-200 mb-2">Enviar Sticker o GIF a otro Muro 🚀</h2>
+            <p class="text-xs text-zinc-400 mb-4">Etiqueta a un creador y lanza un sticker interactivo que viajará directamente a su muro.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-400 mb-1">Usuario Destino (Ej. @creator_valeria)</label>
+                    <input type="text" id="targetUser" class="w-full bg-brand-dark border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-fuchsia transition" placeholder="@usuario">
                 </div>
-                <p class="text-sm text-zinc-300 leading-relaxed">
-                    ¡Hola a todos! Acabo de subir el detrás de cámaras de la nueva sesión fotográfica y el diseño del nuevo set. Espero que les encante este adelanto exclusivo. 🚀
-                </p>
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-400 mb-1">Seleccionar Sticker / GIF</label>
+                    <select id="stickerSelect" class="w-full bg-brand-dark border border-zinc-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-fuchsia transition">
+                        <option value="🔥">🔥 Fuego Puro (Hype)</option>
+                        <option value="💖">💖 Corazón Neón (Amor)</option>
+                        <option value="⭐">⭐ Estrella VIP (Destacado)</option>
+                        <option value="🚀">🚀 Cohete al Éxito (Apoyo)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="lanzarStickerAlMuro()" class="w-full bg-gradient-to-r from-brand-purple to-brand-fuchsia text-white font-bold py-3 rounded-xl text-sm shadow-lg shadow-brand-fuchsia/20 hover:opacity-90 transition">
+                Etiquetar y Lanzar al Muro del Usuario
+            </button>
+
+            <!-- Contenedor de Animación Voladora -->
+            <div id="animationArea" class="relative h-12 mt-4 flex items-center justify-center pointer-events-none"></div>
+        </div>
+
+        <!-- Muro Social / Feed de Actividad Cruzada -->
+        <div class="space-y-4">
+            <h2 class="text-sm font-bold text-zinc-400 tracking-wider uppercase">Muro de Actividad e Interacciones</h2>
+            
+            <div id="muroFeed" class="space-y-4">
+                <!-- Publicación Base -->
+                <div class="bg-brand-card border border-zinc-800 rounded-2xl p-6 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-purple flex items-center justify-center font-bold">JB</div>
+                            <div>
+                                <h4 class="text-sm font-bold">Joslan Brasiu <span class="text-xs font-normal text-zinc-500">etiquetó a @sofia_art</span></h4>
+                                <span class="text-xs text-zinc-500">Hace un momento</span>
+                            </div>
+                        </div>
+                        <span class="text-xs bg-brand-fuchsia/10 text-brand-fuchsia border border-brand-fuchsia/20 px-3 py-1 rounded-full font-medium">Sticker Viajero 🚀</span>
+                    </div>
+                    <p class="text-sm text-zinc-300 leading-relaxed">
+                        ¡Hola @sofia_art! Te envié este cohete espacial directo a tu muro para celebrar tu nueva colección de arte digital. ¡Sigue así!
+                    </p>
+                    <div class="mt-4 inline-flex items-center space-x-2 bg-brand-dark px-3 py-1.5 rounded-xl border border-zinc-800 text-lg">
+                        <span>🚀</span>
+                        <span class="text-xs text-zinc-400">Enviado desde el muro de @joslan</span>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
+    <!-- Script de Animación Dinámica de Stickers -->
+    <script>
+        function lanzarStickerAlMuro() {
+            const target = document.getElementById('targetUser').value.trim();
+            const sticker = document.getElementById('stickerSelect').value;
+            const animationArea = document.getElementById('animationArea');
+            const muroFeed = document.getElementById('muroFeed');
+
+            if (!target) {
+                alert('Por favor escribe el nombre de usuario a quien deseas etiquetar y enviar el sticker.');
+                return;
+            }
+
+            // 1. Crear elemento visual flotante con animación de viaje
+            const flyingElement = document.createElement('div');
+            flyingElement.innerHTML = `<span class="text-3xl drop-shadow-[0_0_10px_#d946ef]">${sticker}</span>`;
+            flyingElement.className = "absolute animate-fly-sticker font-bold flex flex-col items-center";
+            animationArea.appendChild(flyingElement);
+
+            // Eliminar elemento flotante al terminar la animación
+            setTimeout(() => {
+                flyingElement.remove();
+            }, 1500);
+
+            // 2. Simular llegada y agregar la tarjeta interactiva al muro de actividad
+            setTimeout(() => {
+                const nuevaCard = document.createElement('div');
+                nuevaCard.className = "bg-brand-card border border-brand-fuchsia/40 rounded-2xl p-6 transition transform hover:scale-[1.01]";
+                nuevaCard.innerHTML = `
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-purple to-brand-fuchsia flex items-center justify-center font-bold">KV</div>
+                            <div>
+                                <h4 class="text-sm font-bold">Tú <span class="text-xs font-normal text-zinc-400">etiquetaste a ${target}</span></h4>
+                                <span class="text-xs text-brand-fuchsia">¡Sticker entregado con éxito en su muro!</span>
+                            </div>
+                        </div>
+                        <span class="text-xs bg-brand-fuchsia/10 text-brand-fuchsia border border-brand-fuchsia/20 px-3 py-1 rounded-full font-medium">Interacción Cruzada</span>
+                    </div>
+                    <p class="text-sm text-zinc-300 leading-relaxed">
+                        Has enviado un sticker interactivo <span class="text-xl">${sticker}</span> que viajó directamente al perfil de ${target}.
+                    </p>
+                `;
+                muroFeed.prepend(nuevaCard);
+                alert(`¡Sticker ${sticker} enviado y etiquetado correctamente hacia el muro de ${target}!`);
+                document.getElementById('targetUser').value = '';
+            }, 1600);
+        }
+    </script>
+
     <!-- Footer -->
     <footer class="border-t border-zinc-800 py-6 text-center text-xs text-zinc-500">
-        &copy; 2026 Kreatofans. Panel protegido por autenticación segura.
+        &copy; 2026 Kreatofans. Sistema social de stickers y menciones cruzadas en tiempo real.
     </footer>
 </body>
 </html>
