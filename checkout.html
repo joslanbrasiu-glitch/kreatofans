@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suscripción Segura - Kreatofans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a0a0c',
+                            card: '#141418',
+                            fuchsia: '#d946ef',
+                            purple: '#9333ea',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-white min-h-screen flex flex-col justify-center items-center px-6 selection:bg-brand-fuchsia selection:text-white">
+    <!-- Card de Checkout -->
+    <div class="w-full max-w-lg bg-brand-card border border-zinc-800 rounded-3xl p-8 shadow-2xl">
+        <div class="flex items-center space-x-3 mb-6 pb-6 border-b border-zinc-800">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-purple to-brand-fuchsia flex items-center justify-center font-bold text-2xl shadow-lg shadow-brand-fuchsia/30">
+                K
+            </div>
+            <div>
+                <h1 class="text-lg font-black tracking-tight">Suscripción a Creador VIP</h1>
+                <p class="text-xs text-zinc-400">Acceso total a contenido exclusivo y chat privado</p>
+            </div>
+        </div>
+
+        <!-- Resumen del Plan -->
+        <div class="bg-brand-dark border border-zinc-800 rounded-2xl p-4 mb-6 flex justify-between items-center">
+            <div>
+                <span class="text-xs text-brand-fuchsia font-semibold uppercase tracking-wider">Plan Mensual</span>
+                <h3 class="text-sm font-bold text-white mt-0.5">Membresía Completa Creador</h3>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-black text-white">$15.00</span>
+                <span class="text-xs text-zinc-500">/mes</span>
+            </div>
+        </div>
+
+        <!-- Formulario de Pago Seguro (Preparado para Stripe) -->
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Redirigiendo a pasarela de pago segura de Stripe...');">
+            <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-2">Nombre en la Tarjeta</label>
+                <input type="text" required class="w-full bg-brand-dark border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-fuchsia transition" placeholder="Ej. Carlos Mendoza">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-zinc-400 mb-2">Número de Tarjeta (Stripe Secure)</label>
+                <input type="text" required class="w-full bg-brand-dark border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-fuchsia transition" placeholder="4242 •••• •••• 4242">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-400 mb-2">Expiración</label>
+                    <input type="text" required class="w-full bg-brand-dark border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-fuchsia transition" placeholder="MM/AA">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-400 mb-2">CVV</label>
+                    <input type="password" required maxlength="4" class="w-full bg-brand-dark border border-zinc-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-fuchsia transition" placeholder="123">
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-brand-purple to-brand-fuchsia text-white font-bold py-3.5 rounded-xl shadow-lg shadow-brand-fuchsia/20 hover:opacity-90 transition mt-4">
+                Pagar $15.00 y Suscribirse
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-xs text-zinc-500 flex items-center justify-center space-x-2">
+            <span>🔒 Pagos encriptados de extremo a extremo vía Stripe</span>
+        </div>
+    </div>
+</body>
+</html>
