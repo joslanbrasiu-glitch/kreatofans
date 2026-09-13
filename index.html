@@ -74,7 +74,6 @@
             <!-- Video Player con Controles y Audio -->
             <div class="relative w-full rounded-2xl overflow-hidden bg-brand-dark border border-zinc-800 aspect-video flex items-center justify-center">
                 <video id="portadaVideoPlayer" controls class="w-full h-full object-cover">
-                    <!-- Ejemplo de video predeterminado libre de derechos para demostración -->
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
                     Tu navegador no soporta la reproducción de video.
                 </video>
@@ -93,7 +92,6 @@
             if (archivo) {
                 statusDiv.innerText = `¡Archivo seleccionado: ${archivo.name}! Preparando vista previa...`;
                 
-                // Si es un video, podemos cargarlo en el reproductor automáticamente para probarlo con audio
                 if (archivo.type.startsWith('video/')) {
                     const fileURL = URL.createObjectURL(archivo);
                     videoPlayer.src = fileURL;
