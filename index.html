@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kreatofans - La plataforma definitiva</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#0f0f13',
-                            card: '#18181c',
-                            fuchsia: '#d946ef',
-                            purple: '#a855f7'
-                        }
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kreatofans - La plataforma</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              0: '#0b0f19',
+              card: '#131826',
+              fuchsia: '#d946ef',
+              purple: '#9333ea'
             }
+          }
         }
-    </script>
+      }
+    }
+  </script>
 </head>
-<body class="bg-brand-dark text-white min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="border-b border-zinc-800 px-4 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-fuchsia to-brand-purple flex items-center justify-center font-bold text-lg">K</div>
-            <span class="font-extrabold text-lg tracking-tight">Kreatofans</span>
-        </div>
-        <div class="flex items-center gap-2">
-            <a href="login.html" class="text-xs bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 rounded-lg font-medium transition">Iniciar Sesión</a>
-        </div>
-    </header>
+<body class="bg-brand-0 text-white min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="border-b border-gray-800 p-4">
+    <div class="flex items-center justify-between max-w-4xl mx-auto">
+      <div class="w-9 h-9 rounded-full bg-brand-fuchsia/20 flex items-center justify-center">
+        <span class="font-bold text-xs text-brand-fuchsia">K</span>
+      </div>
+      <div>
+        <a href="login.html" class="text-sm text-gray-300 hover:text-white">Entrar</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Contenido Principal -->
-    <main class="flex-1 max-w-4xl w-full mx-auto p-4 space-y-6">
-        <!-- Hero Section -->
-        <section class="text-center space-y-2 py-4">
-            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Comparte tu arte, video y pasión</h1>
-            <p class="text-sm sm:text-base text-zinc-400">La plataforma definitiva para creadores y fans.</p>
-        </section>
+  <!-- Contenido Principal -->
+  <main class="flex-1 max-w-4xl w-full mx-auto p-4 space-y-6">
+    <!-- Hero Section -->
+    <section class="text-center py-6">
+      <h1 class="text-3xl font-bold mb-2">Comparte tu arte, video y pasión</h1>
+      <p class="text-sm text-gray-400">La plataforma definitiva para creadores y fans.</p>
+    </section>
 
-        <!-- Sección de Subida Multimedia (Galería) -->
-        <div class="bg-brand-card border border-zinc-800/80 rounded-2xl p-5 space-y-4">
-            <h2 class="text-sm font-semibold flex items-center gap-2">Subir Contenido Multimedia (Galería) 📁</h2>
-            <p class="text-xs text-zinc-400">Selecciona fotos o videos directamente desde la galería de tu celular o computadora.</p>
-            <label class="flex flex-col items-center justify-center border-2 border-dashed border-zinc-700/60 hover:border-brand-fuchsia/50 rounded-xl p-6 cursor-pointer transition bg-zinc-900/40">
-                <span class="text-2xl mb-1">📁</span>
-                <span class="text-xs font-medium text-zinc-300">Toca aquí para abrir tu galería</span>
-                <p class="text-[11px] text-zinc-500 mt-1">Soporta MP4, MOV, JPG, PNG (Videos con audio y fotos)</p>
-                <input type="file" id="mediaInput" accept="video/*,image/*" class="hidden">
-            </label>
-            <div id="uploadStatus" class="text-xs text-zinc-400 hidden"></div>
-        </div>
+    <!-- Sección de Subida Multimedia (Galería) -->
+    <div class="bg-brand-card border border-gray-800 rounded-2xl p-5 space-y-3">
+      <h2 class="text-sm font-semibold text-gray-200">Subir Contenido Multimedia (Galería)</h2>
+      <p class="text-xs text-gray-400">Selecciona fotos o videos directamente desde la galería de tu celular o computadora.</p>
+      <label class="flex flex-col items-center justify-center border-2 border-dashed border-gray-700 rounded-xl p-6 cursor-pointer hover:border-gray-500 transition">
+        <span class="text-xs text-gray-300">Toca aquí para abrir tu galería</span>
+        <span class="text-[11px] text-gray-500 mt-1">Soporta MP4, MOV, JPG, PNG (Videos con audio y fotos)</span>
+        <input type="file" id="mediaInput" accept="video/*,image/*" class="hidden">
+      </label>
+      <div id="uploadStatus" class="text-xs text-gray-400 text-center"></div>
+    </div>
 
-        <!-- Reproductor Multimedia Destacado 🎬🎵 -->
-        <div class="bg-brand-card border border-zinc-800/80 rounded-2xl p-5 space-y-4">
-            <div class="flex items-center justify-between">
-                <h2 class="text-sm font-semibold">Reproductor Multimedia Destacado 🎬🎵</h2>
-                <span class="text-xs bg-brand-fuchsia/20 text-brand-fuchsia px-2.5 py-1 rounded-full font-medium">Audio y Video Habilitado</span>
-            </div>
+    <!-- Reproductor Multimedia Destacado (Reemplazada la tarjeta gris por el video autoplay/muted/controls) -->
+    <div class="bg-brand-card border border-gray-800 rounded-2xl p-5 space-y-3">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm font-semibold text-gray-200">Reproductor Multimedia Destacado</h2>
+        <span class="text-xs text-brand-fuchsia font-medium">Audio y Video Habilitado</span>
+      </div>
+      
+      <!-- Video Player con autoplay, muted, controls y loop -->
+      <div class="relative w-full rounded-xl overflow-hidden bg-black/50 border border-gray-800">
+        <video id="portadavid" src="demo.mp4" autoplay muted controls loop class="w-full max-h-[320px] object-cover">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <p class="text-xs text-gray-500 text-center">Reproductor optimizado para visualización fluida.</p>
+    </div>
+  </main>
 
-            <!-- Video Player con Contenido -->
-            <div class="relative w-full rounded-xl overflow-hidden bg-black">
-                <video id="portadavid" controls width="100%" class="w-full h-auto block" style="border-radius: 12px; background: #000;">
-                    <source src="demo.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
-                </video>
-            </div>
-            <p class="text-xs text-zinc-500">Reproductor optimizado para visualización fluida.</p>
-        </div>
-    </main>
+  <!-- Script Multimedia -->
+  <script>
+    function manejarSubidaMedia(archivo, statusDiv, videoPlayer) {
+      if (archivo.type.startsWith('video/') || archivo.type.startsWith('image/')) {
+        const fileURL = URL.createObjectURL(archivo);
+        videoPlayer.src = fileURL;
+        videoPlayer.play().catch(e => console.log("Autoplay con restricción:", e));
+        statusDiv.textContent = `Archivo cargado: ${archivo.name}`;
+      } else {
+        statusDiv.textContent = 'Por favor selecciona un archivo de video o imagen válido.';
+      }
+    }
 
-    <!-- Script Multimedia -->
-    <script>
-        function manejarSubidaMultimedia(event) {
-            const archivo = event.target.files[0];
-            const statusDiv = document.getElementById('uploadStatus');
-            const videoPlayer = document.getElementById('portadavid');
+    const mediaInput = document.getElementById('mediaInput');
+    const statusDiv = document.getElementById('uploadStatus');
+    const videoPlayer = document.getElementById('portadavid');
 
-            if (archivo) {
-                statusDiv.classList.remove('hidden');
-                statusDiv.innerText = `Cargando: ${archivo.name}...`;
-
-                if (archivo.type.startsWith('video/')) {
-                    const fileURL = URL.createObjectURL(archivo);
-                    videoPlayer.src = fileURL;
-                    videoPlayer.load();
-                    statusDiv.innerText = `Video cargado: ${archivo.name}`;
-                }
-            }
+    if (mediaInput) {
+      mediaInput.addEventListener('change', (e) => {
+        const archivo = e.target.files[0];
+        if (archivo) {
+          manejarSubidaMedia(archivo, statusDiv, videoPlayer);
         }
-        
-        const mediaInput = document.getElementById('mediaInput');
-        if (mediaInput) {
-            mediaInput.addEventListener('change', manejarSubidaMultimedia);
-        }
-    </script>
+      });
+    }
+  </script>
 
-    <!-- Footer -->
-    <footer class="border-t border-zinc-800/80 text-center py-4 text-xs text-zinc-500">
-        &copy; 2026 Kreatofans. Todos los derechos reservados.
-    </footer>
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 text-center py-4 text-xs text-gray-500">
+    &copy; 2026 Kreatofans. Todos los derechos reservados.
+  </footer>
 </body>
 </html>
